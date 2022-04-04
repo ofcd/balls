@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>zzz</title>
+	<style type="text/css">
+		.box{
+			background: red;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			transition: 2s;
+			border-radius: 100px;
+		}
+		.b1{
+			top: 250px;
+			left: 500px;
+		}
+		.b2{
+			top: 180px;
+			left: 180px;
+		}
+		.b3{
+			top: 170px;
+			left: 300px;
+		}
+		.b4{
+			top: 300px;
+			left: 50px;
+		}
+		.b5{
+			top: 105px;
+			left: 400px;
+		}
+		.b6{
+			top: 350px;
+			left: 225px;
+		}
+		.b7{
+			top: 170px;
+			left: 666px;
+		}
+		.b8{
+			top: 250px;
+			left: 760px;
+		}
+		.b9{
+			top: 400px;
+			left: 850px;
+		}
+		.b10{
+			top: 180px;
+			left: 950px;
+		}
+		.b11{
+			top: 170px;
+			left: 1050px;
+		}
+		.b12{
+			top: 440px;
+			left: 1200px;
+		}
+	</style>
+</head>
+<body class="main">
+	<h1>Score: <span class="scr"></span></h1>
+	<h3>У тебя есть 9 секунд, чтобы собрать все шарики.</h3>
+	<div class="box b1"></div>
+	<div class="box b2"></div>
+	<div class="box b3"></div>
+	<div class="box b4"></div>
+	<div class="box b5"></div>
+	<div class="box b6"></div>
+	<div class="box b7"></div>
+	<div class="box b8"></div>
+	<div class="box b9"></div>
+	<div class="box b10"></div>
+	<div class="box b11"></div>
+	<div class="box b12"></div>
+
+	<script type="text/javascript">
+		let elem = document.querySelectorAll(".box");
+		let ss = document.querySelector(".scr");
+		let zz = document.querySelector(".main");
+		let lb = 100;
+		let tb = 90;
+		let l2b = 120;
+		let score = 0;
+
+		ss.innerHTML = score;
+
+		
+
+		function endgame(){
+    		if(score < 12){
+    			zz.style.display = "none";
+    			alert("Ты проиграл!")
+    		}
+		}
+
+		function changeCircle(){
+			lb = lb + 10;
+			tb = tb + 3;
+			l2b = l2b + 3;
+    		for (let i=0; i<4; i=i+1) {
+    			elem[i].style.left = lb * i +"px";
+    		}
+
+    		for (let i=4; i<8; i=i+1) {
+    			elem[i].style.top = tb * i +"px";
+    		}
+
+    		for (let i=8; i<12; i=i+1) {
+    			elem[i].style.left = l2b * i +"px";
+    		}
+		}
+
+		function startGame(){
+        	for (let i=0; i<12; i=i+1) {
+    			elem[i].onclick = function() {
+    				elem[i].style.display = "none";
+    				score = score + 1;
+    				ss.innerHTML = score;
+    				if (score == 12) {
+    					zz.style.display = "none";
+    					alert("Ты победил!")
+    				}
+    			}
+    		}
+    		setInterval(changeCircle,1000);
+    		setTimeout(endgame, 9000)
+		}
+		setTimeout(startGame, 1000)
+	</script>
+</body>
+</html>
